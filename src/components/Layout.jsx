@@ -12,7 +12,7 @@ const Layout = () => {
             </Link>
           </li>
           <li>
-            <Link to="/" className="hover:text-yellow-400">
+            <Link to="/owner" className="hover:text-yellow-400">
               Owner
             </Link>
           </li>

@@ -1,8 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomeNormal from "./components/HomeNormal";
 import HomeUser from "./components/HomeUser";
-import HomeAdmin from "./components/HomeAdmin";
+import { HomeAdmin, PostUser } from "./components/HomeAdmin";
+import Owner from "./components/Owner";
 
 
 
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/homeadmin",
-        element: <HomeAdmin />
+        element: (<> <PostUser /><HomeAdmin />  </>)
+      },
+      {
+        path: "/owner",
+        element: <Owner />
       }
     ]
   }
