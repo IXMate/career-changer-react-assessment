@@ -26,23 +26,31 @@ const HomeUser = () => {
         fetchUsers();
     }, []);
 
+    if (loading) {
+        return <div>Loading...</div>;
+      }
+    
+      if (error) {
+        return <div>Error: {error}</div>;
+      }
+
     return (
       <div className="text-center bg-white p-[16px]">
-        <h1 className="text-3xl font-bold mb-4">Generation Thailand <br />React - Assessment</h1>
+        <h1 className="text-3xl font-bold mb-4">Generation Thailand <br />React - User Section</h1>
         <div className="flex gap-[40px] justify-center">
         <Link to="/homeuser">
-          <button className="px-4 py-2 bg-[#F0E0D0] text-white rounded-md hover:bg-[#62483A] transition durution">
+          <button className="px-4 py-2 bg-[#c49569] text-white rounded-md hover:bg-[#62483A] transition duration-300 hover:text-yellow-200">
             User Home Section
           </button>
         </Link>
         <Link to="/homeadmin">
-          <button className="px-4 py-2 bg-[#F0E0D0] text-white rounded-md hover:bg-[#62483A] transition">
+          <button className="px-4 py-2 bg-[#c49569] text-white rounded-md hover:bg-[#62483A] transition duration-300 hover:text-yellow-200">
             Admin Home Section
           </button>
         </Link>
         </div>
-        <h1 className="p-[16px]">This is Test section</h1>
-        <div className="flex border gap-[16px] justify-between">
+        {/* <h1 className="p-[16px]">This is Test section</h1> */}
+        <div className="flex border gap-[16px] justify-between mt-[24px] bg-[#9f938d]">
                 <p>Name</p>
                 <p>LastName</p>
                 <p>Position</p>

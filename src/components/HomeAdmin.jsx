@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { use } from "react";
 
 const PostUser = () => {
     const [name, setName] = useState("");
@@ -17,11 +16,11 @@ const PostUser = () => {
           setError("");
           setResponse(null);
           try {
-            const response = await axios.post(
+            const res = await axios.post(
               "https://jsd5-mock-backend.onrender.com/members",
               { name, lastname, position },
             );
-            setResponse(response.data);
+            setResponse(res.data);
             setName("");
             setLastname("");
             setPosition("");
@@ -38,6 +37,10 @@ const PostUser = () => {
 
       }, [submitted, name, lastname, position]);
 
+      if (error) {
+        return <div>Error: {error}</div>;
+      }
+
       const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitted(true);
@@ -45,20 +48,20 @@ const PostUser = () => {
 
       return (
         <div className="text-center bg-white p-[16px]">
-        <h1 className="text-3xl font-bold mb-4">Generation Thailand <br />React - Assessment</h1>
-        <div className="flex gap-[40px] justify-center">
+        <h1 className="text-3xl font-bold mb-4">Generation Thailand <br />React - Admin Section</h1>
+        <div className="flex gap-[40px] justify-center mb-[16px]">
         <Link to="/homeuser">
-          <button className="px-4 py-2 bg-[#F0E0D0] text-white rounded-md hover:bg-[#62483A] transition durution">
+          <button className="px-4 py-2 bg-[#c49569] text-white rounded-md hover:bg-[#62483A] transition duration-300 hover:text-yellow-200">
             User Home Section
           </button>
         </Link>
         <Link to="/homeadmin">
-          <button className="px-4 py-2 bg-[#F0E0D0] text-white rounded-md hover:bg-[#62483A] transition">
+          <button className="px-4 py-2 bg-[#c49569] text-white rounded-md hover:bg-[#62483A] transition duration-300 hover:text-yellow-200">
             Admin Home Section
           </button>
         </Link>
         </div>
-        <h1 className="p-[16px]">This is Test section</h1>
+        {/* <h1 className="p-[16px]">This is Test section</h1> */}
         <form onSubmit={handleSubmit} className="flex gap-[24px]">
             <input
               type="text"
@@ -96,7 +99,6 @@ const HomeAdmin = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -127,12 +129,22 @@ const HomeAdmin = () => {
         }
       };
 
+      if (loading) {
+        return <div>Loading...</div>;
+      }
+    
+      if (error) {
+        return <div>Error: {error}</div>;
+      }
+      
+
     return (
     <div className="flex flex-col border gap-[16px] justify-between">
-        <div className="flex justify-between">
+        <div className="flex justify-between px-[24px]">
             <p>Name</p>
             <p>LastName</p>
             <p>Position</p>
+            <p>Delete</p>
         </div>
         <div className="text-center bg-white p-[16px]">
         {users.map((users) => (
